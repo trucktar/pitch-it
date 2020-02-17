@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center vh-100">
+   <div class="col-md-5 my-auto">
+       <h1 class="text-center">Welcome back!</h1>
+       <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+           <div class="form-group">
+                {{ form.username.label(class_="font-weight-bold") }}
+                {{ form.username(class_="form-control")}}
+           </div>
+           <div class="form-group">
+                {{ form.password.label(class_="font-weight-bold") }}
+                {{ form.password(class_="form-control") }}
+           </div>
+           <div class="form-check">
+                {{ form.remember_me(class_="form-check-input") }}
+                {{ form.remember_me.label }}
+           </div>
+            {{ form.submit(class_="btn btn-primary btn-block mb-3") }}
+       </form>
+       <p>Need an account? <a href="{{ url_for('auth.register') }}">Register</a></p>
+   </div>
+</div>
+{% endblock %}
