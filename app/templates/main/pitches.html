@@ -1,0 +1,16 @@
+<div class="d-flex">
+  <a href="#"><img width="49" height="49" src="" alt="..." class="rounded"></a>
+  <div class="pl-3 w-100">
+    <div class="d-flex align-items-center">
+      <a class="mr-2" href="#">{{ pitch.user.username }}</a>
+      <span class="small text-muted">posted {{ pitch.timestamp.strftime("%b %d '%y at %I:%M%p") }}</span>
+    </div>
+    <p>{{ pitch.content }}</p>
+    <div class="d-flex align-items-center">
+      <button class="upvote mr-5 btn btn-light fa fa-thumbs-o-up" data-postid="{{ pitch.id }}"><span class="ml-1 small">{{ pitch.upvotes }}</span></button>
+      <button class="downvote mr-5 btn btn-light fa fa-thumbs-o-down" data-postid="{{ pitch.id }}"><span
+          class="ml-1 small">{{ pitch.downvotes }}</span></button>
+    </div>
+  </div>
+</div>
+<hr>
