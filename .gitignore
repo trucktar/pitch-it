@@ -1,0 +1,13 @@
+# VSCode settings and debug configs
+.vscode/
+
+### Python ###
+# Byte-compiled files
+__pycache__/
+
+# Load env vars using dotenv
+.env
+
+# Use requirements.txt instead
+Pipfile
+Pipfile.lock
