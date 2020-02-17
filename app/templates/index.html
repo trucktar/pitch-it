@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3 class="text-nowrap">All Pitches</h3>
+  <button class="text-nowrap btn btn-primary ml-3" data-toggle="modal" data-target="#pitch-modal">New Pitch</button>
+</div>
+<div class="d-flex flex-wrap justify-content-between align-items-center">
+  <div class="mr-3">{{ pitches.count() }} pitches</div>
+  <div class="btn-group">
+    <a class="btn btn-outline-secondary" href="{{ url_for("main.pitches", category="pickup") }}">Pickup</a>
+    <a class="btn btn-outline-secondary" href="{{ url_for("main.pitches", category="interview") }}">Interview</a>
+    <a class="btn btn-outline-secondary" href="{{ url_for("main.pitches", category="product") }}">Product</a>
+    <a class="btn btn-outline-secondary" href="{{ url_for("main.pitches", category="promotion") }}">Promotion</a>
+  </div>
+</div>
+<hr>
+
+<!-- Pitch Form Modal -->
+<div class="modal fade" id="pitch-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Post a pitch</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="pitch-form" action="" method="post" novalidate>
+          {{ form.hidden_tag() }}
+          <div class="form-group">
+            {{ form.category.label(class_="font-weight-bold") }}
+            {{ form.category(class_="form-control") }}
+          </div>
+          <div class="form-group">
+            {{ form.content(class_="form-control", placeholder="Say something nice")}}
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        {{ form.submit(class_="btn btn-primary", form="pitch-form") }}
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% for pitch in pitches %}
+{% include 'main/pitches.html' %}
+{% endfor%}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $(document).on('click', '.upvote', function (event) {
+    $.ajax({
+      url: '/upvote',
+      type: "post",
+      contentType: 'application/json;charset=UTF-8',
+      dataType: "json",
+      data: JSON.stringify({
+        'postid': $('.upvote').data('postid')
+      }),
+      success: function (resp) {
+        $('.upvote > span').text(resp.upvotes)
+      }
+    });
+    event.preventDefault();
+  });
+  $(document).on('click', '.downvote', function (event) {
+    $.ajax({
+      url: '/downvote',
+      type: "post",
+      contentType: 'application/json;charset=UTF-8',
+      dataType: "json",
+      data: JSON.stringify({
+        'postid': $('.upvote').data('postid')
+      }),
+      success: function (resp) {
+        $('.downvote > span').text(resp.downvotes)
+      }
+    });
+    event.preventDefault();
+  });
+</script>
+{% endblock %}
