@@ -2,7 +2,7 @@
   <a href="#"><img width="49" height="49" src="" alt="..." class="rounded"></a>
   <div class="pl-3 w-100">
     <div class="d-flex align-items-center">
-      <a class="mr-2" href="#">{{ pitch.user.username }}</a>
+      <a class="mr-2" href="{{ url_for('main.user', username=pitch.user.username) }}">{{ pitch.user.username }}</a>
       <span class="small text-muted">posted {{ pitch.timestamp.strftime("%b %d '%y at %I:%M%p") }}</span>
     </div>
     <p>{{ pitch.content }}</p>
