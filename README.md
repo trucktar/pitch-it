@@ -1,6 +1,6 @@
 # pitch-it
 
-> This project features a Flask application that consumes the News API to display different news articles from different sources
+> This project features a Flask application using a PostgreSQL database and deployed to Heroku.
 
 ## Description
 
