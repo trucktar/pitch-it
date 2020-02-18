@@ -12,7 +12,7 @@ login_manager = LoginManager()
 # The name of the view to redirect to when login is required.
 login_manager.login_view = "auth.login"
 # The message to flash when a user is redirected to the login page.
-login_manager.login_message = ""
+login_manager.login_message = "Please sign in to access this page"
 
 
 def create_app(config_name="development"):
